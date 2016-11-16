@@ -30,4 +30,20 @@ public protocol ImageViewerDelegate: class {
      */
     func imageViewerDidDisplayImage(at index: Int)
     
+    /**
+     Tells when the user touch in the like button
+     
+     - parameter index: Index of the image.
+    */
+    func didTouchLikeButton(at index: Int)
+ 
+    
+    /**
+      Ask delegate for the image that should appear in the button when the image appears.
+      - parameter index: index of the image
+     
+      - return: UIImage
+    */
+    func getImageFromButton(at index: Int) -> UIImage
+    
 }

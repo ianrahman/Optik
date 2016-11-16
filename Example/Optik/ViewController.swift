@@ -62,7 +62,7 @@ internal final class ViewController: UIViewController {
         let urls = [url1, url2, url3, url4]
         let imageDownloader = AlamofireImageDownloader()
         
-        let viewController = Optik.imageViewer(withURLs: urls, imageDownloader: imageDownloader)
+        let viewController = Optik.imageViewer(withURLs: urls, initialImageDisplayIndex: 0, delegate: self, imageDownloader: imageDownloader, activityIndicatorColor: UIColor.white, dismissButtonImage: nil, dismissButtonPosition: .topLeading)
         present(viewController, animated: true, completion: nil)
     }
 
@@ -80,6 +80,18 @@ extension ViewController: ImageViewerDelegate {
     
     func imageViewerDidDisplayImage(at index: Int) {
         currentLocalImageIndex = index
+    }
+    
+    func didTouchLikeButton(at index: Int) {
+        print(index)
+    }
+    
+    func getImageFromButton(at index: Int) -> UIImage {
+        if index % 2 == 0 {
+            return UIImage(named: "start-red")!
+        } else {
+            return UIImage(named: "reload-icon")!
+        }
     }
     
 }

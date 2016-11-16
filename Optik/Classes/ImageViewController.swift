@@ -30,7 +30,8 @@ internal final class ImageViewController: UIViewController {
         }
     }
     private(set) var imageView: UIImageView?
-
+    var likeButton: UIButton?
+    
     let index: Int
     
     // MARK: - Private properties
@@ -65,8 +66,8 @@ internal final class ImageViewController: UIViewController {
         self.image = image
         self.activityIndicatorColor = activityIndicatorColor
         self.index = index
-        
         super.init(nibName: nil, bundle: nil)
+        self.likeButton = UIButton()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -158,6 +159,10 @@ internal final class ImageViewController: UIViewController {
             
             self.activityIndicatorView = activityIndicatorView
         }
+        
+        likeButton?.frame = CGRect(x: 20, y: view.frame.height - 50, width: 44, height: 44)
+        likeButton?.setImage(UIImage(named: ""), for: .normal)
+        view.addSubview(likeButton!)
         
         setupTapGestureRecognizer()
     }
