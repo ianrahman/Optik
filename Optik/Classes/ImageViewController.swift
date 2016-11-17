@@ -160,12 +160,55 @@ internal final class ImageViewController: UIViewController {
             self.activityIndicatorView = activityIndicatorView
         }
         
-        likeButton?.frame = CGRect(x: 20, y: view.frame.height - 50, width: 44, height: 44)
-        likeButton?.setImage(UIImage(named: ""), for: .normal)
-        view.addSubview(likeButton!)
+        if let button = likeButton {
+            button.translatesAutoresizingMaskIntoConstraints = false
+            button.imageView?.contentMode = .scaleAspectFill
+            
+            view.addSubview(button)
+            
+            view.addConstraint(
+                NSLayoutConstraint(item: button,
+                                   attribute: .bottom,
+                                   relatedBy: .equal,
+                                   toItem: view,
+                                   attribute: .bottom,
+                                   multiplier: 1,
+                                   constant: -20)
+            )
+            view.addConstraint(
+                NSLayoutConstraint(item: button,
+                                   attribute: .leading,
+                                   relatedBy: .equal,
+                                   toItem: view,
+                                   attribute: .leading,
+                                   multiplier: 1,
+                                   constant: 20)
+            )
+            view.addConstraint(
+                NSLayoutConstraint(item: button,
+                                   attribute: .width,
+                                   relatedBy: .equal,
+                                   toItem: nil,
+                                   attribute: .width,
+                                   multiplier: 1,
+                                   constant: 44)
+            )
+            view.addConstraint(
+                NSLayoutConstraint(item: button,
+                                   attribute: .height,
+                                   relatedBy: .equal,
+                                   toItem: nil,
+                                   attribute: .height,
+                                   multiplier: 1,
+                                   constant: 44)
+            )
+            
+        }
         
         setupTapGestureRecognizer()
     }
+
+    
     
     private func setupTapGestureRecognizer() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ImageViewController.didDoubleTap(_:)))

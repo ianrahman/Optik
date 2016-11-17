@@ -63,12 +63,13 @@ internal final class AlbumViewController: UIViewController {
     private var activityIndicatorColor: UIColor?
     private var dismissButtonImage: UIImage?
     private var dismissButtonPosition: DismissButtonPosition
+    fileprivate var pageControl: UIPageControl?
+    
     
     private var cachedRemoteImages: [URL: UIImage] = [:]
     private var viewDidAppear: Bool = false
     
     private var transitionController: TransitionController = TransitionController()
-    fileprivate var pageControl: UIPageControl?
     
     // MARK: - Init/Deinit
     
@@ -92,7 +93,7 @@ internal final class AlbumViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         
         setupPageViewController()
-        setupPageControl()
+//        setupPageControl()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -120,12 +121,6 @@ internal final class AlbumViewController: UIViewController {
         }
         
         updateLikeButtonImage(at: initialImageDisplayIndex)
-        
-//        if let imageViewController = pageViewController.viewControllers?.first as? ImageViewController{
-//            let likeButton = imageViewController.likeButton
-//            let image = imageViewerDelegate?.getImageFromButton(at: initialImageDisplayIndex)
-//            likeButton?.setImage(image, for: .normal)
-//        }
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -158,15 +153,55 @@ internal final class AlbumViewController: UIViewController {
         didMove(toParentViewController: pageViewController)
         
         setupDismissButton()
+        setupPageControl()
         setupPanGestureRecognizer()
     }
     
     private func setupPageControl() {
-        pageControl?.frame =  CGRect(x: view.frame.width - 170, y: view.frame.height/2, width: 300, height: 25)
+        
         pageControl?.currentPage = 0
         pageControl?.pageIndicatorTintColor = UIColor.red
-        view.addSubview(pageControl!)
+        pageControl?.translatesAutoresizingMaskIntoConstraints = false
         pageControl?.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI/2))
+        view.addSubview(pageControl!)
+
+        view.addConstraint(
+            NSLayoutConstraint(item: pageControl,
+                               attribute: .trailing,
+                               relatedBy: .equal,
+                               toItem: view,
+                               attribute: .trailing,
+                               multiplier: 1,
+                               constant: -10)
+        )
+        view.addConstraint(
+            NSLayoutConstraint(item: pageControl,
+                               attribute: .centerY,
+                               relatedBy: .equal,
+                               toItem: view,
+                               attribute: .centerY,
+                               multiplier: 1,
+                               constant: 0)
+        )
+        view.addConstraint(
+            NSLayoutConstraint(item: pageControl,
+                               attribute: .width,
+                               relatedBy: .equal,
+                               toItem: nil,
+                               attribute: .notAnAttribute,
+                               multiplier: 1,
+                               constant: 30)
+        )
+        view.addConstraint(
+            NSLayoutConstraint(item: pageControl,
+                               attribute: .height,
+                               relatedBy: .equal,
+                               toItem: nil,
+                               attribute: .notAnAttribute,
+                               multiplier: 1,
+                               constant: 25)
+        )
+    
     }
     
     private func setupPageViewController() {
