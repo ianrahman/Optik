@@ -93,7 +93,6 @@ internal final class AlbumViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         
         setupPageViewController()
-//        setupPageControl()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -293,8 +292,9 @@ internal final class AlbumViewController: UIViewController {
             
             pageControl?.numberOfPages = urls.count
             let imageViewController = ImageViewController(activityIndicatorColor: activityIndicatorColor, index: index)
+            imageViewController.likeButton?.addTarget(self, action: #selector(AlbumViewController.didSelectImage(_:)), for: .touchUpInside)
+
             let url = urls[index]
-            
             if let image = cachedRemoteImages[url] {
                 imageViewController.image = image
             } else {
@@ -305,8 +305,6 @@ internal final class AlbumViewController: UIViewController {
                     imageViewController.image = image
                 })
             }
-            imageViewController.likeButton?.addTarget(self, action: #selector(AlbumViewController.didSelectImage(_:)), for: .touchUpInside)
-
             
             return imageViewController
         }
@@ -315,7 +313,7 @@ internal final class AlbumViewController: UIViewController {
     fileprivate func updateLikeButtonImage(at index: Int) {
         if let imageViewController = pageViewController.viewControllers?.first as? ImageViewController{
             let likeButton = imageViewController.likeButton
-            let image = imageViewerDelegate?.getImageFromButton(at: index)
+            let image = imageViewerDelegate?.imageFromButton(at: index)
             likeButton?.setImage(image, for: .normal)
         }
     }
@@ -332,7 +330,7 @@ internal final class AlbumViewController: UIViewController {
     
     @objc private func didSelectImage(_ sender: UIButton) {
         if let currentImageIndex = currentImageViewController?.index {
-            imageViewerDelegate?.didTouchLikeButton(at: currentImageIndex)
+            imageViewerDelegate?.didTouchLike(button: sender, at: currentImageIndex)
         }
     }
     
@@ -383,7 +381,6 @@ extension AlbumViewController: UIPageViewControllerDelegate {
                 .forEach { $0?.resetImageView() }
         }
         
-        // Update page control
         if let currentImageIndex = currentImageViewController?.index {
             imageViewerDelegate?.imageViewerDidDisplayImage(at: currentImageIndex)
             pageControl?.currentPage = currentImageIndex

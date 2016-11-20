@@ -82,15 +82,19 @@ extension ViewController: ImageViewerDelegate {
         currentLocalImageIndex = index
     }
     
-    func didTouchLikeButton(at index: Int) {
-        print(index)
+    func didTouchLike(button: UIButton, at index: Int) {
+        if  button.currentImage == UIImage(named: "heart-full")! {
+            button.setImage(UIImage(named: "heart-empty"), for: .normal)
+        } else {
+            button.setImage(UIImage(named: "heart-full"), for: .normal)
+        }
     }
     
-    func getImageFromButton(at index: Int) -> UIImage {
+    func imageFromButton(at index: Int) -> UIImage {
         if index % 2 == 0 {
-            return UIImage(named: "start-red")!
+            return UIImage(named: "heart-full")!
         } else {
-            return UIImage(named: "reload-icon")!
+            return UIImage(named: "heart-empty")!
         }
     }
     

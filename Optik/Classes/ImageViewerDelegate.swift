@@ -35,7 +35,7 @@ public protocol ImageViewerDelegate: class {
      
      - parameter index: Index of the image.
     */
-    func didTouchLikeButton(at index: Int)
+    func didTouchLike(button: UIButton, at index: Int)
  
     
     /**
@@ -44,6 +44,6 @@ public protocol ImageViewerDelegate: class {
      
       - return: UIImage
     */
-    func getImageFromButton(at index: Int) -> UIImage
+    func imageFromButton(at index: Int) -> UIImage
     
 }
