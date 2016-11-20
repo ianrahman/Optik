@@ -313,7 +313,7 @@ internal final class AlbumViewController: UIViewController {
     fileprivate func updateLikeButtonImage(at index: Int) {
         if let imageViewController = pageViewController.viewControllers?.first as? ImageViewController{
             let likeButton = imageViewController.likeButton
-            let image = imageViewerDelegate?.imageFromButton(at: index)
+            let image = imageViewerDelegate?.imageFromLikeButton(at: index)
             likeButton?.setImage(image, for: .normal)
         }
     }
