@@ -90,7 +90,7 @@ extension ViewController: ImageViewerDelegate {
         }
     }
     
-    func imageFromButton(at index: Int) -> UIImage {
+    func imageFromLikeButton(at index: Int) -> UIImage {
         if index % 2 == 0 {
             return UIImage(named: "heart-full")!
         } else {
