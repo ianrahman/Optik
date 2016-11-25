@@ -77,7 +77,8 @@ internal final class AlbumViewController: UIViewController {
          initialImageDisplayIndex: Int,
          activityIndicatorColor: UIColor?,
          dismissButtonImage: UIImage?,
-         dismissButtonPosition: DismissButtonPosition) {
+         dismissButtonPosition: DismissButtonPosition,
+         likeButtonPosition: LikeButtonPosition) {
         
         self.imageData = imageData
         self.initialImageDisplayIndex = initialImageDisplayIndex
@@ -280,8 +281,7 @@ internal final class AlbumViewController: UIViewController {
             }
             
             pageControl?.numberOfPages = images.count
-            
-            let imageViewController =  ImageViewController(image: images[index], index: index)
+            let imageViewController =  ImageViewController(image: images[index], index: index, likeButtonPosition: .bottomLeading)
             imageViewController.likeButton?.addTarget(self, action: #selector(AlbumViewController.didSelectImage(_:)), for: .touchUpInside)
             return imageViewController
             
@@ -291,7 +291,7 @@ internal final class AlbumViewController: UIViewController {
             }
             
             pageControl?.numberOfPages = urls.count
-            let imageViewController = ImageViewController(activityIndicatorColor: activityIndicatorColor, index: index)
+            let imageViewController = ImageViewController(activityIndicatorColor: activityIndicatorColor, index: index, likeButtonPosition: .bottomLeading)
             imageViewController.likeButton?.addTarget(self, action: #selector(AlbumViewController.didSelectImage(_:)), for: .touchUpInside)
 
             let url = urls[index]

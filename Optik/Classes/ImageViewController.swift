@@ -37,7 +37,7 @@ internal final class ImageViewController: UIViewController {
     // MARK: - Private properties
     
     private var activityIndicatorColor: UIColor?
-    
+    private var likeButtonPosition: LikeButtonPosition?
     private var scrollView: UIScrollView? {
         didSet {
             guard let scrollView = scrollView else {
@@ -62,10 +62,11 @@ internal final class ImageViewController: UIViewController {
     
     // MARK: - Init/Deinit
     
-    init(image: UIImage? = nil, activityIndicatorColor: UIColor? = nil, index: Int) {
+    init(image: UIImage? = nil, activityIndicatorColor: UIColor? = nil, index: Int, likeButtonPosition: LikeButtonPosition) {
         self.image = image
         self.activityIndicatorColor = activityIndicatorColor
         self.index = index
+        self.likeButtonPosition = likeButtonPosition
         super.init(nibName: nil, bundle: nil)
         self.likeButton = UIButton()
     }
@@ -159,28 +160,32 @@ internal final class ImageViewController: UIViewController {
             
             self.activityIndicatorView = activityIndicatorView
         }
-        
+
         if let button = likeButton {
             button.translatesAutoresizingMaskIntoConstraints = false
             button.imageView?.contentMode = .scaleAspectFill
+            
+           let xAnchorAttribute = likeButtonPosition?.xAnchorAttribute()
+           let yAnchorAttribute = likeButtonPosition?.yAnchorAttribute()
+            
             
             view.addSubview(button)
             
             view.addConstraint(
                 NSLayoutConstraint(item: button,
-                                   attribute: .bottom,
+                                   attribute: yAnchorAttribute!,
                                    relatedBy: .equal,
                                    toItem: view,
-                                   attribute: .bottom,
+                                   attribute: yAnchorAttribute!,
                                    multiplier: 1,
                                    constant: -20)
             )
             view.addConstraint(
                 NSLayoutConstraint(item: button,
-                                   attribute: .leading,
+                                   attribute: xAnchorAttribute!,
                                    relatedBy: .equal,
                                    toItem: view,
-                                   attribute: .leading,
+                                   attribute: xAnchorAttribute!,
                                    multiplier: 1,
                                    constant: 20)
             )
