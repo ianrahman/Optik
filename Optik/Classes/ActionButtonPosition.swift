@@ -14,8 +14,8 @@ import Foundation
  - topLeading:  like button is constrained to the top and leading anchors of its superview.
  - topTrailing: like button is constrained to the top and trailing anchors of its superview.
  */
-public enum LikeButtonPosition {
-    
+public enum ActionButtonPosition {
+
     case bottomLeading
     
     func xAnchorAttribute() -> NSLayoutAttribute {

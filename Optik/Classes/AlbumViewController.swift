@@ -78,7 +78,7 @@ internal final class AlbumViewController: UIViewController {
          activityIndicatorColor: UIColor?,
          dismissButtonImage: UIImage?,
          dismissButtonPosition: DismissButtonPosition,
-         likeButtonPosition: LikeButtonPosition) {
+         actionButtonPosition: ActionButtonPosition) {
         
         self.imageData = imageData
         self.initialImageDisplayIndex = initialImageDisplayIndex
@@ -281,7 +281,7 @@ internal final class AlbumViewController: UIViewController {
             }
             
             pageControl?.numberOfPages = images.count
-            let imageViewController =  ImageViewController(image: images[index], index: index, likeButtonPosition: .bottomLeading)
+            let imageViewController =  ImageViewController(image: images[index], index: index, actionButtonPosition: .bottomLeading)
             imageViewController.likeButton?.addTarget(self, action: #selector(AlbumViewController.didSelectImage(_:)), for: .touchUpInside)
             return imageViewController
             
@@ -291,7 +291,7 @@ internal final class AlbumViewController: UIViewController {
             }
             
             pageControl?.numberOfPages = urls.count
-            let imageViewController = ImageViewController(activityIndicatorColor: activityIndicatorColor, index: index, likeButtonPosition: .bottomLeading)
+            let imageViewController = ImageViewController(activityIndicatorColor: activityIndicatorColor, index: index, actionButtonPosition: .bottomLeading)
             imageViewController.likeButton?.addTarget(self, action: #selector(AlbumViewController.didSelectImage(_:)), for: .touchUpInside)
 
             let url = urls[index]
@@ -313,7 +313,7 @@ internal final class AlbumViewController: UIViewController {
     fileprivate func updateLikeButtonImage(at index: Int) {
         if let imageViewController = pageViewController.viewControllers?.first as? ImageViewController{
             let likeButton = imageViewController.likeButton
-            let image = imageViewerDelegate?.imageFromLikeButton(at: index)
+            let image = imageViewerDelegate?.imageForActionButton(at: index)
             likeButton?.setImage(image, for: .normal)
         }
     }

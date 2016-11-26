@@ -44,6 +44,6 @@ public protocol ImageViewerDelegate: class {
      
       - return: UIImage
     */
-    func imageFromLikeButton(at index: Int) -> UIImage
+    func imageForActionButton (at index: Int) -> UIImage
     
 }

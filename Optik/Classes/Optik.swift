@@ -26,7 +26,7 @@ public func imageViewer(withImages images: [UIImage],
                         delegate: ImageViewerDelegate? = nil,
                         dismissButtonImage: UIImage? = nil,
                         dismissButtonPosition: DismissButtonPosition = .topLeading,
-                        likeButtonPosition: LikeButtonPosition = .bottomLeading) -> UIViewController {
+                        actionButtonPosition: ActionButtonPosition = .bottomLeading) -> UIViewController {
     let albumViewController = imageViewer(withData: .local(images: images),
                                           initialImageDisplayIndex: initialImageDisplayIndex,
                                           dismissButtonImage: dismissButtonImage,
@@ -56,7 +56,7 @@ public func imageViewer(withURLs urls: [URL],
                         activityIndicatorColor: UIColor = .white,
                         dismissButtonImage: UIImage? = nil,
                         dismissButtonPosition: DismissButtonPosition = .topLeading,
-                        likeButtonPosition: LikeButtonPosition = .bottomLeading) -> UIViewController {
+                        actionButtonPosition: ActionButtonPosition = .bottomLeading) -> UIViewController {
     let albumViewController = imageViewer(withData: .remote(urls: urls, imageDownloader: imageDownloader),
                                           initialImageDisplayIndex: initialImageDisplayIndex,
                                           activityIndicatorColor: activityIndicatorColor,
@@ -75,7 +75,7 @@ private func imageViewer(withData imageData: ImageData,
                          activityIndicatorColor: UIColor? = nil,
                          dismissButtonImage: UIImage?,
                          dismissButtonPosition: DismissButtonPosition,
-                         likeButtonPosition: LikeButtonPosition = .bottomLeading) -> AlbumViewController {
+                         actionButtonPosition: ActionButtonPosition = .bottomLeading) -> AlbumViewController {
     let bundle = Bundle(for: AlbumViewController.self)
     let defaultDismissButtonImage = UIImage(named: "DismissIcon", in: bundle, compatibleWith: nil)
     
@@ -84,5 +84,5 @@ private func imageViewer(withData imageData: ImageData,
                                activityIndicatorColor: activityIndicatorColor,
                                dismissButtonImage: dismissButtonImage ?? defaultDismissButtonImage,
                                dismissButtonPosition: dismissButtonPosition,
-                               likeButtonPosition: likeButtonPosition)
+                               actionButtonPosition: actionButtonPosition)
 }
