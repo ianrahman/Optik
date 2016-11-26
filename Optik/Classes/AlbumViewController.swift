@@ -120,7 +120,7 @@ internal final class AlbumViewController: UIViewController {
             })
         }
         
-        updateLikeButtonImage(at: initialImageDisplayIndex)
+        updateActionButtonImage(at: initialImageDisplayIndex)
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -282,7 +282,7 @@ internal final class AlbumViewController: UIViewController {
             
             pageControl?.numberOfPages = images.count
             let imageViewController =  ImageViewController(image: images[index], index: index, actionButtonPosition: .bottomLeading)
-            imageViewController.likeButton?.addTarget(self, action: #selector(AlbumViewController.didSelectImage(_:)), for: .touchUpInside)
+            imageViewController.actionButton?.addTarget(self, action: #selector(AlbumViewController.didSelectImage(_:)), for: .touchUpInside)
             return imageViewController
             
         case .remote(let urls, let imageDownloader):
@@ -292,7 +292,7 @@ internal final class AlbumViewController: UIViewController {
             
             pageControl?.numberOfPages = urls.count
             let imageViewController = ImageViewController(activityIndicatorColor: activityIndicatorColor, index: index, actionButtonPosition: .bottomLeading)
-            imageViewController.likeButton?.addTarget(self, action: #selector(AlbumViewController.didSelectImage(_:)), for: .touchUpInside)
+            imageViewController.actionButton?.addTarget(self, action: #selector(AlbumViewController.didSelectImage(_:)), for: .touchUpInside)
 
             let url = urls[index]
             if let image = cachedRemoteImages[url] {
@@ -310,11 +310,11 @@ internal final class AlbumViewController: UIViewController {
         }
     }
     
-    fileprivate func updateLikeButtonImage(at index: Int) {
+    fileprivate func updateActionButtonImage(at index: Int) {
         if let imageViewController = pageViewController.viewControllers?.first as? ImageViewController{
-            let likeButton = imageViewController.likeButton
+            let actionButton = imageViewController.actionButton
             let image = imageViewerDelegate?.imageForActionButton(at: index)
-            likeButton?.setImage(image, for: .normal)
+            actionButton?.setImage(image, for: .normal)
         }
     }
     
@@ -330,7 +330,7 @@ internal final class AlbumViewController: UIViewController {
     
     @objc private func didSelectImage(_ sender: UIButton) {
         if let currentImageIndex = currentImageViewController?.index {
-            imageViewerDelegate?.didTouchLike(button: sender, at: currentImageIndex)
+            imageViewerDelegate?.actionButtonTapped(button: sender, at: currentImageIndex)
         }
     }
     
@@ -384,7 +384,7 @@ extension AlbumViewController: UIPageViewControllerDelegate {
         if let currentImageIndex = currentImageViewController?.index {
             imageViewerDelegate?.imageViewerDidDisplayImage(at: currentImageIndex)
             pageControl?.currentPage = currentImageIndex
-            self.updateLikeButtonImage(at: currentImageIndex)
+            self.updateActionButtonImage(at: currentImageIndex)
         }
     }
     

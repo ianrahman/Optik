@@ -30,7 +30,7 @@ internal final class ImageViewController: UIViewController {
         }
     }
     private(set) var imageView: UIImageView?
-    var likeButton: UIButton?
+    var actionButton: UIButton?
     
     let index: Int
     
@@ -68,7 +68,7 @@ internal final class ImageViewController: UIViewController {
         self.index = index
         self.actionButtonPosition = actionButtonPosition
         super.init(nibName: nil, bundle: nil)
-        self.likeButton = UIButton()
+        self.actionButton = UIButton()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -161,7 +161,7 @@ internal final class ImageViewController: UIViewController {
             self.activityIndicatorView = activityIndicatorView
         }
 
-        if let button = likeButton {
+        if let button = actionButton {
             button.translatesAutoresizingMaskIntoConstraints = false
             button.imageView?.contentMode = .scaleAspectFill
             

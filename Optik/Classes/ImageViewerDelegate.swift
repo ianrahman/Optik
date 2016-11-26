@@ -31,11 +31,11 @@ public protocol ImageViewerDelegate: class {
     func imageViewerDidDisplayImage(at index: Int)
     
     /**
-     Tells when the user touch in the like button
+     Tells when the user touch in the action button
      
      - parameter index: Index of the image.
     */
-    func didTouchLike(button: UIButton, at index: Int)
+    func actionButtonTapped(button: UIButton, at index: Int)
  
     
     /**

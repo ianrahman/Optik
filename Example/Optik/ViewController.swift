@@ -82,7 +82,7 @@ extension ViewController: ImageViewerDelegate {
         currentLocalImageIndex = index
     }
     
-    func didTouchLike(button: UIButton, at index: Int) {
+    func actionButtonTapped(button: UIButton, at index: Int) {
         if  button.currentImage == UIImage(named: "heart-full")! {
             button.setImage(UIImage(named: "heart-empty"), for: .normal)
         } else {
