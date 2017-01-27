@@ -62,7 +62,7 @@ internal final class ViewController: UIViewController {
         let urls = [url1, url2, url3, url4]
         let imageDownloader = AlamofireImageDownloader()
         
-        let viewController = Optik.imageViewer(withURLs: urls, imageDownloader: imageDownloader, enablePageControl: true)
+        let viewController = Optik.imageViewer(withURLs: urls, delegate: self, imageDownloader: imageDownloader, enablePageControl: true)
         present(viewController, animated: true, completion: nil)
     }
 

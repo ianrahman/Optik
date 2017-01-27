@@ -54,19 +54,25 @@ public func imageViewer(withImages images: [UIImage],
  */
 public func imageViewer(withURLs urls: [URL],
                                  initialImageDisplayIndex: Int = 0,
+                                 delegate: ImageViewerDelegate? = nil,
                                  imageDownloader: ImageDownloader,
                                  activityIndicatorColor: UIColor = .white,
                                  dismissButtonImage: UIImage? = nil,
                                  dismissButtonPosition: DismissButtonPosition = .topLeading,
                                  enablePageControl: Bool,
                                  actionButtonPosition: ActionButtonPosition = .bottomLeading) -> UIViewController {
-    return imageViewer(withData: .remote(urls: urls, imageDownloader: imageDownloader),
+    let albumViewController =  imageViewer(withData: .remote(urls: urls, imageDownloader: imageDownloader),
                        initialImageDisplayIndex: initialImageDisplayIndex,
                        activityIndicatorColor: activityIndicatorColor,
                        dismissButtonImage: dismissButtonImage,
                        dismissButtonPosition: dismissButtonPosition,
                        enablePageControl: enablePageControl,
                        actionButtonPosition: actionButtonPosition)
+    albumViewController.modalPresentationStyle = .custom
+    albumViewController.imageViewerDelegate = delegate
+    
+    return albumViewController
+    
 }
 
 // MARK: - Private functions
