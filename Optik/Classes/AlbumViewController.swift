@@ -181,6 +181,7 @@ internal final class AlbumViewController: UIViewController {
     private func setupPageControl() {
         
         if let page = pageControl {
+            page.hidesForSinglePage = true
             page.currentPage = initialImageDisplayIndex
             page.pageIndicatorTintColor = UIColor.red
             page.translatesAutoresizingMaskIntoConstraints = false
