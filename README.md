@@ -1,4 +1,4 @@
-# Optik
+![Optik](Images/Optik_Banner.jpg)
 
 [![Travis build status](https://img.shields.io/travis/prolificinteractive/Optik.svg?style=flat-square)](https://travis-ci.org/prolificinteractive/Optik)
 [![Cocoapods Compatible](https://img.shields.io/cocoapods/v/Optik.svg?style=flat-square)](https://img.shields.io/cocoapods/v/Optik.svg)
@@ -9,11 +9,12 @@
 
 Optik provides a simple viewing experience for a set of images, whether stored locally or remotely.
 
-<img src="https://github.com/prolificinteractive/Optik/blob/master/optik_example.gif" width="320px" height="568px" />
+<img src="https://github.com/prolificinteractive/Optik/blob/master/Images/Optik_Example.gif" width="320px" height="568px" />
 
 ## Requirements
 
 * iOS 8.0+
+* Xcode 8.1 or later
 
 ## Installation
 
@@ -117,7 +118,7 @@ If you wish to contribute to the project, fork this repo and submit a pull reque
 
 ![prolific](https://s3.amazonaws.com/prolificsitestaging/logos/Prolific_Logo_Full_Color.png)
 
-Copyright (c) 2016 Prolific Interactive
+Copyright (c) 2017 Prolific Interactive
 
 Marker is maintained and sponsored by Prolific Interactive. It may be redistributed under the terms specified in the [LICENSE] file.
 
